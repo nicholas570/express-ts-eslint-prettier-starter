@@ -1,1 +1,3 @@
-console.log('hello world');
+import runServer from './server/server';
+
+runServer();
