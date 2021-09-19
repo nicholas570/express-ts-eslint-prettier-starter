@@ -1,9 +1,15 @@
-import express, { Router, Request, Response } from 'express';
+import express, { Router, Request, Response, NextFunction } from 'express';
+import testService from '../services/testService';
 
-const router: Router = express.Router();
+const testController: Router = express.Router();
 
-router.get('/', (req: Request, res: Response) => {
-  res.send('hello test');
+testController.get('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const results = await testService.getAll();
+    return res.status(200).json(results);
+  } catch (error) {
+    next(error);
+  }
 });
 
-export default router;
+export default testController;
