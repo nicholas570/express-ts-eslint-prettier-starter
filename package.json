@@ -9,18 +9,18 @@
     "start": "npm run build && node build/index.js",
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts --fix",
-    "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write"
+    "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "src/**/*.ts*": [
       "npm run lint",
-      "npm run prettier",
-      "./node_modules/.bin/eslint/ --max-warnings=0"
+      "npm run prettier"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint staged"
+      "pre-commit": "npm run precommit"
     }
   },
   "author": "",
